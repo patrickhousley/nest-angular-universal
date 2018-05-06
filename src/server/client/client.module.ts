@@ -42,8 +42,6 @@ export class ClientModule implements NestModule {
   }
 
   configure(consumer: MiddlewaresConsumer): void {
-    // Leaving the first line commented out fails with that error and the second one does not serve the files.
-    // this.app.use(this.ngOptions.viewsPath);
-    // this.app.get(express.static(this.ngOptions.viewsPath, {index: false}));
+    this.app.use(express.static(this.ngOptions.viewsPath));
   }
 }
