@@ -4,6 +4,6 @@ import { HeroesService } from './heroes.service';
 
 @Module({
   controllers: [HeroesController],
-  providers: [HeroesService],
+  components: [HeroesService],
 })
 export class HeroesModule {}

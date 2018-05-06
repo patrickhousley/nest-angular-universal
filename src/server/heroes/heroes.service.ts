@@ -1,8 +1,8 @@
-import { Injectable, HttpException, HttpStatus } from '@nestjs/common';
+import {Component, HttpException, HttpStatus} from '@nestjs/common';
 import { Hero } from '../../shared/hero';
 import { HEROES } from './mock-heroes';
 
-@Injectable()
+@Component()
 export class HeroesService {
   private heroCache: Hero[];
   private nextId: number;
@@ -19,7 +19,7 @@ export class HeroesService {
       const regex = new RegExp(name, 'gi');
       return this.heroCache.filter(hero => regex.test(hero.name))
     }
-    
+
     return this.heroCache;
   }
 

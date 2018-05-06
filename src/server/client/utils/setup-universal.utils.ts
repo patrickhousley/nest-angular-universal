@@ -8,8 +8,8 @@ import { environment } from '../../environments/environment';
 export function setupUniversal(app: NestApplication, ngOptions: AngularUniversalOptions) {
   const { AppServerModuleNgFactory, LAZY_MODULE_MAP } = ngOptions.bundle;
 
-  app.setViewEngine('html');
-  app.setBaseViewsDir(ngOptions.viewsPath);
+  app.set('view engine', 'html');
+  app.set('views', ngOptions.viewsPath);
   app.engine('html', ngExpressEngine({
     bootstrap: AppServerModuleNgFactory,
     providers: [
