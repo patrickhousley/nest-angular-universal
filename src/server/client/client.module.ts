@@ -10,8 +10,8 @@ import { AngularUniversalOptions } from './interfaces/angular-universal-options.
 import { ANGULAR_UNIVERSAL_OPTIONS } from './client.constants';
 import { ClientController } from './client.controller';
 import { angularUniversalProviders } from './client.providers';
-import {EXPRESS_REF } from '@nestjs/core/injector';
-import {MiddlewaresConsumer} from '@nestjs/common/interfaces/middlewares';
+import { EXPRESS_REF } from '@nestjs/core/injector';
+import { MiddlewaresConsumer } from '@nestjs/common/interfaces/middlewares';
 import { environment } from '../environments/environment';
 
 @Module({
@@ -21,7 +21,7 @@ import { environment } from '../environments/environment';
 export class ClientModule implements NestModule {
   constructor(
     @Inject(ANGULAR_UNIVERSAL_OPTIONS) private readonly ngOptions: AngularUniversalOptions,
-    @Inject(EXPRESS_REF ) private readonly app: NestApplication
+    @Inject(EXPRESS_REF) private readonly app: NestApplication
   ) {}
 
   static forRoot(): DynamicModule {
