@@ -1,0 +1,69 @@
+# Default settings
+defaults: &defaults
+  working_directory: ~/project
+  docker:
+    - image: circleci/node:8.11.3
+
+version: 2
+jobs:
+  install:
+    <<: *defaults
+    steps:
+      - checkout
+      - restore_cache:
+          key: node-dependencies-{{ checksum "package-lock.json" }}
+      - run:
+          name: "Installing Node Modules"
+          command: npm install --no-save --no-progress
+      - save_cache:
+          paths:
+            - node_modules
+          key: node-dependencies-{{ checksum "package-lock.json" }}
+  linting:
+    <<: *defaults
+    steps:
+      - checkout
+      - restore_cache:
+          key: node-dependencies-{{ checksum "package-lock.json" }}
+      - run:
+          name: "Linting"
+          command: npm run lint
+  test:
+    <<: *defaults
+    steps:
+      - checkout
+      - restore_cache:
+          key: node-dependencies-{{ checksum "package-lock.json" }}
+      - run:
+          name: "Running Tests"
+          command: npm test -- --ci --coverage
+          environment:
+            JEST_JUNIT_OUTPUT: "coverage/junit.xml"
+      - store_test_results:
+          path: coverage
+      - store_artifacts:
+          path: coverage
+  build:
+    <<: *defaults
+    steps:
+      - checkout
+      - restore_cache:
+          key: node-dependencies-{{ checksum "package-lock.json" }}
+      - run:
+          name: "Running Tests"
+          command: npm run build
+          environment:
+            NODE_ENV: "production"
+      - store_artifacts:
+          path: dist
+workflows:
+  version: 2
+  test:
+    jobs:
+      - install
+      - linting:
+          requires:
+            - install
+      - test:
+          requires:
+            - install
