@@ -1,4 +1,4 @@
-import { Hero } from '../../shared/hero';
+import { Hero } from '@nau/core';
 
 export const HEROES: Hero[] = [
   { id: 11, name: 'Mr. Nice' },

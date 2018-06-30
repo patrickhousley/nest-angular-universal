@@ -1,15 +1,15 @@
 {
   "extends": "../tsconfig.json",
   "compilerOptions": {
-    "outDir": "../out-tsc/app",
+    "outDir": "../out-tsc/server",
     "module": "commonjs",
     "types": []
   },
   "exclude": [
-    "test.ts",
+    "src/test.ts",
     "**/*.spec.ts"
   ],
-  "angularCompilerOptions": {
-    "entryModule": "app/app.server.module#AppServerModule"
-  }
+  "include": [
+    "**/*.ts"
+  ]
 }

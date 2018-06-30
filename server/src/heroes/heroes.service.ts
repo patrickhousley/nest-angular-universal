@@ -1,5 +1,5 @@
 import { Injectable, HttpException, HttpStatus } from '@nestjs/common';
-import { Hero } from '../../shared/hero';
+import { Hero } from '@nau/core';
 import { HEROES } from './mock-heroes';
 
 @Injectable()
@@ -19,7 +19,7 @@ export class HeroesService {
       const regex = new RegExp(name, 'gi');
       return this.heroCache.filter(hero => regex.test(hero.name))
     }
-    
+
     return this.heroCache;
   }
 
