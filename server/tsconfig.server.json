@@ -3,7 +3,8 @@
   "compilerOptions": {
     "outDir": "../out-tsc/server",
     "module": "commonjs",
-    "types": []
+    "types": [],
+    "target": "es6"
   },
   "exclude": [
     "src/test.ts",
