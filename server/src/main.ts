@@ -2,7 +2,9 @@ import 'zone.js/dist/zone-node';
 import { enableProdMode } from '@angular/core';
 import { NestFactory } from '@nestjs/core';
 import { environment } from '@nau/server/shared/config/environment';
+import { swaggerConfig } from '@nau/server/shared/config/swagger.config';
 import { ApplicationModule } from './app.module';
+import { SwaggerModule } from '@nestjs/swagger';
 
 declare const module: any;
 
@@ -12,11 +14,9 @@ async function bootstrap() {
   }
 
   const app = await NestFactory.create(ApplicationModule.moduleFactory());
-
-  if (module.hot) {
-    module.hot.accept();
-    module.hot.dispose(() => app.close());
-  }
+  app.setGlobalPrefix('/api');
+  const document = SwaggerModule.createDocument(app, swaggerConfig);
+  SwaggerModule.setup('/swagger', app, document);
 
   await app.listen(environment.port);
 }

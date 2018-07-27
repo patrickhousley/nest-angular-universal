@@ -34,7 +34,7 @@ export class ClientModule implements NestModule {
     const requireFn = typeof __webpack_require__ === "function" ? __non_webpack_require__ : require;
     const options: AngularUniversalOptions = {
       viewsPath: environment.clientPaths.app,
-      bundle: requireFn(join(environment.clientPaths.server, 'main.js'))
+      bundle: requireFn(join(environment.clientPaths.app, 'main.js'))
     };
 
     return {

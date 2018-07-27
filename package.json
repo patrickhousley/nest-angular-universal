@@ -34,6 +34,7 @@
     "@angular/router": "^6.0.6",
     "@nestjs/common": "^5.0.1",
     "@nestjs/core": "^5.0.1",
+    "@nestjs/swagger": "^2.2.0",
     "@nguniversal/common": "^6.0.0",
     "@nguniversal/express-engine": "^6.0.0",
     "@nguniversal/module-map-ngfactory-loader": "^6.0.0",
